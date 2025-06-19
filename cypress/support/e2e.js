@@ -13,5 +13,33 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
-import './commands'
+// Comandos básicos de Cypress
+// Esperar que el DOM esté cargado completamente
+// Comando para esperar que la página cargue
+Cypress.Commands.add("waitForPageLoad", () => {
+  cy.get("body").should("be.visible");
+  cy.wait(2000);
+});
+
+// Comando para capturar screenshot
+Cypress.Commands.add("takeScreenshot", (name) => {
+  cy.screenshot(name);
+});
+
+Cypress.on("uncaught:exception", (err, runnable) => {
+  // Ignora errores relacionados a getLayoutMap
+  if (err.message.includes("getLayoutMap")) {
+    return false;
+  }
+  // Otros errores pueden seguir fallando si querés
+});
+
+Cypress.on("unhandledrejection", (event) => {
+  if (
+    event.reason &&
+    event.reason.message &&
+    event.reason.message.includes("getLayoutMap")
+  ) {
+    return false;
+  }
+});
