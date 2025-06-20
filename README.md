@@ -76,6 +76,7 @@ Arrastra el archivo `mochawesome.html` hasta tu navegador para ver los resultado
 - Node.js 18+ recomendado
 - Cypress 14+
 - Navegadores: Chrome y Electron
+- Cucumber 22+ recomendado
 
 ---
 
